@@ -8,18 +8,22 @@ public class Register extends Element implements Operand {
 
     /**
      * Constructor: crea elemento registro. Asigna el texto y valor de validez (TRUE o FALSE).
+     * Además, asigna tipo de operando, numero de bits que ocupa y clasificación según su tamaño.
      * @param text   String:  cadena de texto del elemento.
      * @param valid  boolean: validez del elemento.
      */
     public Register(String text, boolean valid){
         super(text, valid);
         setType();
+        setOperandType();
+        setNumberOfBits();
+        setSize();
     }
 
     /**
      * Asigna el tipo de registro (entre registros de propósito general, de segmento o de propósito especial).
      */
-    public void setType() {
+    private void setType() {
         String[][] registers = { {"AX", "AH", "AL", "BX", "BH", "BL", "CX", "CH", "CL", "DX", "DH", "DL"},
                 {"CS", "DS", "ES", "SS"},
                 {"SP", "BP", "SI", "DI", "IP"} };
