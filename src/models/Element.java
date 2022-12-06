@@ -1,9 +1,10 @@
 package models;
 
 public class Element {
-    private String text;            // almacena cadena con el texto del elemento
-    private boolean valid;          // almacena TRUE si el elemento es válido, o FALSE en caso contrario
-    private String type;            // almacena tipo de pseudoinst ( o de inst o de simbolo o de cte o de reg)
+    private String text;            // cadena con el texto del elemento
+    private boolean valid;          // TRUE si el elemento es válido, o FALSE en caso contrario
+    private String type;            // tipo de elemento
+    private String subtype;         // subtipo del elemento
 
     /**
      * Constructor: crea elemento. Asigna el texto y valor de validez (TRUE o FALSE).
@@ -21,6 +22,14 @@ public class Element {
      */
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * Asigna el subtipo de elemento.
+     * @param subtype String: subtipo del elemento.
+     */
+    public void setSubtype(String subtype) {
+        this.subtype = subtype;
     }
 
     /**
@@ -44,4 +53,10 @@ public class Element {
         return type;
     }
 
+    /**
+     * @return String: subtipo del elemento.
+     */
+    public String getSubtype() {
+        return subtype;
+    }
 }
