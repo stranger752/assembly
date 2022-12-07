@@ -13,18 +13,18 @@ public class Tools {
 
     /**
      * Separa los elementos de una línea de código.
-     * Precondición: la linea de código a analizar no contiene comentarios.
-     * @param line String: línea de código a segmentar.
-     * @return ArrayList de Strings: lista de cadena. Cada cadena es un elemento de la línea de código.
+     * @param line 'String' que es la línea de código a segmentar.
+     * @return 'ArrayList' de 'Strings', donde cada 'String' es un elemento de la línea de código.
      */
-    public ArrayList<String> splitLine(String line) {
+    public ArrayList<String> splitLine(String line){
+
         if ( line.equalsIgnoreCase("") ) return new ArrayList<>(List.of(""));
+
         else {
-            // se secciona la línea usando dos puntos, comas, tabuladores y espacios (en ese orden) como separadores
+            // se secciona la línea usando comas, tabuladores y espacios (en ese orden) como separadores
             ArrayList<String> splitted = new ArrayList<>();
             splitted.add(line);
-            splitted =
-                    splitAt(splitAt(splitAt(splitAt(splitted, ":"),","),"\t")," ");
+            splitted = splitAt(splitAt(splitAt(splitted,","),"\t")," ");
 
             // se crea 'ArrayList' donde se almacenan solo los elementos que son diferentes a ""
             ArrayList<String> segments = new ArrayList<>();
@@ -34,6 +34,7 @@ public class Tools {
             // se juntan los elementos compuestos. se retorna el 'ArrayList' resultante
             return mergeCompounds(segments);
         }
+
     }
 
     /**

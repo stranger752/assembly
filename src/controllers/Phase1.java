@@ -23,8 +23,7 @@ public class Phase1 {
             aux.addAll(tools.splitLine(s[0]));
             if ( !s[0].equalsIgnoreCase("") ) aux.add("");
         }
-        for ( String s : aux ) {}
-            //this.elements.add(new Element(s));
+        for ( String s : aux ) createElement(s);
 
         // se llena a la lista del análisis lexicográfico que contine los elementos y su tipo (identifiación)
         for (Element e: elements)
@@ -186,5 +185,10 @@ public class Phase1 {
     private boolean isSymbol(String text){
         return ( text.length() <= 10 && Character.isLetter(text.charAt(0)) );
     }
+
+    /**
+     * @return 'ArrayList' de 'String[]': lista de arreglos que contiene el análisis lexicográfico
+     */
+    public ArrayList<String[]> getLexical() { return lexical; }
 
 }
