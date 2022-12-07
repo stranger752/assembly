@@ -10,7 +10,7 @@ public interface Operand {
     /**
      * Asiga el número de bytes que usa el operando.
      */
-    void setNumberOfBits();
+    void setNumberOfBytes();
 
     /**
      * Asiga el tamaño al operando, entre word o byte.
@@ -23,9 +23,9 @@ public interface Operand {
     String getOperandType();
 
     /**
-     * @return int: numero de bits que usa el operando.
+     * @return int: numero de bytes que usa el operando.
      */
-    int getNumberOfBits();
+    int getNumberOfBytes();
 
     /**
      * @return String: tipo de dato según tamaño (byte o word).

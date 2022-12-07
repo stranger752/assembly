@@ -16,7 +16,7 @@ public class Instruction extends Element {
     }
 
     /**
-     * Asigna el tipo de instruccioón según el número de operandos ("sin ops", "un op", "dos ops" o "salto").
+     * Asigna el tipo de instrucción según el número de operandos ("sin ops", "un op", "dos ops" o "salto").
      */
     private void setSubtype(){
         String [][] instructions = { { "HLT", "LODSW", "POPF", "STC", "XLATB", "AAA"},

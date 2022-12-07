@@ -3,7 +3,7 @@ package models;
 public class Register extends Element implements Operand {
 
     private String operandType;     // tipo de operando (REG o SREG)
-    private int numBits;            // número de bytes que usa (8 o 16 bits)
+    private int numBytes;            // número de bytes que usa (8 o 16 bits)
     private String size;            // tipo de registro según su tamaño (word o byte)
 
     /**
@@ -17,7 +17,7 @@ public class Register extends Element implements Operand {
         setType("Registro");
         setSubtype();
         setOperandType();
-        setNumberOfBits();
+        setNumberOfBytes();
         setSize();
     }
 
@@ -59,11 +59,11 @@ public class Register extends Element implements Operand {
      * Asiga el número de bytes que usa el operando.
      */
     @Override
-    public void setNumberOfBits() {
+    public void setNumberOfBytes() {
         if ( this.getText().endsWith("H") || this.getText().endsWith("L") )
-            this.numBits = 8;
+            this.numBytes = 1;
         else
-            this.numBits = 16;
+            this.numBytes = 2;
     }
 
     /**
@@ -86,11 +86,11 @@ public class Register extends Element implements Operand {
     }
 
     /**
-     * @return int: numero de bits que usa el operando.
+     * @return int: numero de bytes que usa el operando.
      */
     @Override
-    public int getNumberOfBits() {
-        return this.numBits;
+    public int getNumberOfBytes() {
+        return this.numBytes;
     }
 
     /**
