@@ -17,6 +17,7 @@ public class Constant extends Element implements Operand {
         setTypes();
         setOperandType();
         setNumberOfBytes();
+        setSize();
     }
 
     /**
