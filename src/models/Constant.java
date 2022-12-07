@@ -5,6 +5,7 @@ public class Constant extends Element implements Operand {
     private String operandType;       // tipo de operando
     private int numBytes;             // número de bytes que usa
     private String size;              // tipo de registro según su tamaño (word o byte)
+    private boolean signed;           // tiene signo negativo
 
     /**
      * Constructor: crea elemento constante. Asigna el texto, valor de validez (TRUE o FALSE) y tipo.
@@ -41,6 +42,17 @@ public class Constant extends Element implements Operand {
                 this.setSubtype("dec");
                 this.setType("Constante numérica decimal");
             }
+        }
+    }
+
+    private void setSigned(){
+        switch (this.getSubtype()) {
+            case "char" -> this.signed = false;
+            case "hex"  -> this.signed = getText().startsWith("08") || getText().startsWith("09")
+                    || getText().startsWith("0A") || getText().startsWith("0B") || getText().startsWith("0C")
+                    || getText().startsWith("0D") || getText().startsWith("0E") || getText().startsWith("0F");
+            case "bin"  -> this.signed = getText().startsWith("1");
+            default     -> this.signed = Integer.parseInt(getText()) < 0;
         }
     }
 

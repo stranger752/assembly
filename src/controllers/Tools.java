@@ -17,7 +17,7 @@ public class Tools {
      * @param line String: línea de código a segmentar.
      * @return ArrayList de Strings: lista de cadena. Cada cadena es un elemento de la línea de código.
      */
-    private ArrayList<String> splitLine(String line) {
+    public ArrayList<String> splitLine(String line) {
         if ( line.equalsIgnoreCase("") ) return new ArrayList<>(List.of(""));
         else {
             // se secciona la línea usando dos puntos, comas, tabuladores y espacios (en ese orden) como separadores
@@ -156,10 +156,21 @@ public class Tools {
      * @param line String: linea de código
      * @return String: línea de código sin espacios (" ") al final de la cadena.
      */
-    private String removeEndingSpaces(String line){
+    public String removeEndingSpaces(String line){
         if ( !line.endsWith(" ") )
             return line;
         else return removeEndingSpaces(line.substring(0,line.length()-1));
+    }
+
+    /**
+     * Remueve espacios (" ") al inicio de la línea de código dada como parámetro.
+     * @param line String: linea de código
+     * @return String: línea de código sin espacios (" ") al inicio de la cadena.
+     */
+    public String removeStartingSpaces(String line){
+        if ( !line.startsWith(" ") )
+            return line;
+        else return removeStartingSpaces(line.substring(1));
     }
 
     /**
