@@ -1,3 +1,8 @@
+/**
+ * @author Escalera Jimenez Enrique
+ * @author Sánchez Mendieta Jesús Alberto
+ */
+
 package models;
 
 public class Element {
@@ -36,27 +41,28 @@ public class Element {
      * @return String: cadena de texto del elemento.
      */
     public String getText() {
-        return text;
+        return this.text;
     }
 
     /**
-     * @return boolean: TRUE si el elemento es válido.
+     * @return boolean: TRUE si el elemento es válido. FALSE en caso contrario.
      */
     public boolean isValid() {
-        return valid;
+        return this.valid;
     }
 
     /**
      * @return String: tipo del elemento.
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     /**
      * @return String: subtipo del elemento.
      */
     public String getSubtype() {
-        return subtype;
+        return this.subtype;
     }
+
 }
