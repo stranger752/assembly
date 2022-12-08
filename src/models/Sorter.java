@@ -35,7 +35,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es una instrucción no asignada al equipo 6.
      */
-    private boolean isUnassignedInstruction(String text){
+    public boolean isUnassignedInstruction(String text){
         String[] insts = { "AAD", "AAM", "AAS", "ADC", "AND", "CALL", "CBW", "CLC", "CLD", "CLI", "CMC",
                 "CMP", "CMPSB", "CMPSW", "CWD", "DAA", "DAS", "DEC", "DIV", "IMUL", "IN", "INC",
                 "INT", "INTO", "IRET", "JAE", "JB", "JBE", "JCXZ", "JE", "JG", "JGE", "JL", "JLE",
@@ -54,7 +54,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es una constante carácter.
      */
-    private boolean isChar(String text){
+    public boolean isChar(String text){
         return (text.startsWith("\"") && text.endsWith("\"")) || (text.startsWith("'") && text.endsWith("'"));
     }
 
@@ -62,7 +62,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es una constante hexadecimal.
      */
-    private boolean isHex(String text){
+    public boolean isHex(String text){
         boolean isHex = false;
         String[] s = text.split("");
         if ( s[0].matches("0")
@@ -88,7 +88,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es una constante binaria.
      */
-    private boolean isBin(String text){
+    public boolean isBin(String text){
         boolean isBin = false;
         String[] s = text.split("");
         if ( s[s.length-1].equalsIgnoreCase("B") && ( s.length-1==8 || s.length-1==16 ) ) {
@@ -106,7 +106,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es una constante decimal.
      */
-    private boolean isDec(String text){
+    public boolean isDec(String text){
         boolean isDec = false;
         String[] s = text.split("");
         if (s[0].matches("[0-9]+") || s[0].matches("-")) {
@@ -124,7 +124,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es una pseudoinstrucción.
      */
-    private boolean isPseudoinstruction(String text){
+    public boolean isPseudoinstruction(String text){
         String[] pseudos = { ".data segment", ".code segment", ".stack segment", "ends", "dw", "db", "equ",
                 "byte ptr", "word ptr", "macro", "endm", "proc", "endp"};
         for (String p : pseudos)
@@ -136,7 +136,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es una pseudoinstrucción DUP(_).
      */
-    private boolean isDUP(String text){
+    public boolean isDUP(String text){
         String[] s = text.split("");
         return s[0].equalsIgnoreCase("D")
                 && s[1].equalsIgnoreCase("U")
@@ -149,7 +149,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es un símbolo.
      */
-    private boolean isSymbol(String text){
+    public boolean isSymbol(String text){
         if (text.length()<=10 && Character.isLetter(text.charAt(0))) {
             for ( int i=1; i<text.length(); i++ ){
                 if ( !Character.isLetterOrDigit(text.charAt(i)) ) return false;
@@ -163,7 +163,7 @@ public class Sorter {
      * @param  text String: elemento a revisar.
      * @return TRUE si el elemento es un acceso a memoria.
      */
-    private boolean isMemoryAccess(String text){
+    public boolean isMemoryAccess(String text){
         return text.startsWith("[") && text.endsWith("]");
     }
 
