@@ -1,3 +1,8 @@
+/**
+ * @author Escalera Jimenez Enrique
+ * @author Sánchez Mendieta Jesús Alberto
+ */
+
 package models;
 
 public class Constant extends Element implements Operand {
@@ -19,6 +24,7 @@ public class Constant extends Element implements Operand {
         setOperandType();
         setNumberOfBytes();
         setSize();
+        setSigned();
     }
 
     /**
@@ -30,11 +36,11 @@ public class Constant extends Element implements Operand {
                 this.setSubtype("char");
                 this.setType("Constante carácter");
             }
-            case 'H' -> {
+            case 'H','h' -> {
                 this.setSubtype("hex");
                 this.setType("Constante numérica hexadecimal");
             }
-            case 'B' -> {
+            case 'B','b' -> {
                 this.setSubtype("bin");
                 this.setType("Constante numérica binaria");
             }
@@ -42,17 +48,6 @@ public class Constant extends Element implements Operand {
                 this.setSubtype("dec");
                 this.setType("Constante numérica decimal");
             }
-        }
-    }
-
-    private void setSigned(){
-        switch (this.getSubtype()) {
-            case "char" -> this.signed = false;
-            case "hex"  -> this.signed = getText().startsWith("08") || getText().startsWith("09")
-                    || getText().startsWith("0A") || getText().startsWith("0B") || getText().startsWith("0C")
-                    || getText().startsWith("0D") || getText().startsWith("0E") || getText().startsWith("0F");
-            case "bin"  -> this.signed = getText().startsWith("1");
-            default     -> this.signed = Integer.parseInt(getText()) < 0;
         }
     }
 
@@ -72,7 +67,7 @@ public class Constant extends Element implements Operand {
         switch (this.getSubtype()) {
             case "char" -> this.numBytes = getText().length();
             case "hex"  -> {
-                if (this.getText().length() == 3) this.numBytes = 1;
+                if (this.getText().length() == 4) this.numBytes = 1;
                 else this.numBytes = 2;
             }
             case "bin"  -> {
@@ -80,14 +75,9 @@ public class Constant extends Element implements Operand {
                 else this.numBytes = 2;
             }
             default     -> {
-                try {
-                    int num = Integer.parseInt(this.getText());
-                    if ( num >= 128 || num < -128 ) this.numBytes = 2;
-                    else this.numBytes = 0;
-                }
-                catch (Exception e) {
-                    this.numBytes = 0;
-                }
+                if ( Integer.parseInt(this.getText())>=128 || Integer.parseInt(this.getText())<-128 )
+                    this.numBytes = 2;
+                else this.numBytes = 1;
             }
         }
     }
@@ -111,14 +101,9 @@ public class Constant extends Element implements Operand {
                 else this.size = "word";
             }
             default     -> {
-                try {
-                    int num = Integer.parseInt(this.getText());
-                    if ( num >= 128 || num < -128 ) this.size = "word";
-                    else this.size = "both";
-                }
-                catch (Exception e) {
-                    this.size = null;
-                }
+                if ( Integer.parseInt(this.getText())>=128 || Integer.parseInt(this.getText())<-128 )
+                    this.size = "word";
+                else this.size = "byte";
             }
         }
     }
@@ -146,4 +131,19 @@ public class Constant extends Element implements Operand {
     public String getSize() {
         return this.size;
     }
+
+    /**
+     * Asigna TRUE a signed si la constante es numérica negativa.
+     */
+    private void setSigned(){
+        switch (this.getSubtype()) {
+            case "char" -> this.signed = false;
+            case "hex"  -> this.signed = getText().startsWith("08") || getText().startsWith("09")
+                    || getText().startsWith("0A") || getText().startsWith("0B") || getText().startsWith("0C")
+                    || getText().startsWith("0D") || getText().startsWith("0E") || getText().startsWith("0F");
+            case "bin"  -> this.signed = getText().startsWith("1");
+            default     -> this.signed = Integer.parseInt(getText()) < 0;
+        }
+    }
+
 }
