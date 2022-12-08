@@ -1,3 +1,8 @@
+/**
+ * @author Escalera Jimenez Enrique
+ * @author Sánchez Mendieta Jesús Alberto
+ */
+
 package models;
 
 public class Splitter {
