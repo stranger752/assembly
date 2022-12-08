@@ -1,3 +1,8 @@
+/**
+ * @author Escalera Jimenez Enrique
+ * @author Sánchez Mendieta Jesús Alberto
+ */
+
 package models;
 
 public class Dup extends Element {
@@ -11,18 +16,25 @@ public class Dup extends Element {
      */
     public Dup(String text, boolean valid){
         super(text, valid);
-        setType("Pseudoinstrucción");
-        setArgument( text );
-        setSubtype();
-    }
 
-    /**
-     * Crea y asigna el argumento constante.
-     * @param text String: cadena de texto del elemento.
-     */
-    private void setArgument(String text){
-        String arg = text.substring(this.getText().indexOf("(")+1, this.getText().length()-1);
-        this.argument = new Constant(arg, true);
+        // se prepara a la cadena contenida entre los parentesis
+        Splitter splitter = new Splitter();
+        String arg = text.substring(text.indexOf("(")+1, text.length()-1);
+        arg = splitter.removeStartingSpaces(arg);
+        arg = splitter.removeEndingSpaces(arg);
+
+        // si la cadena sea una constante asigna tipo, subtipo y argumento
+        Sorter sorter = new Sorter();
+        if ( sorter.isChar(arg) || sorter.isHex(arg) || sorter.isBin(arg) || sorter.isDec(arg) ) {
+            this.argument = new Constant(arg, true);
+            setType("Pseudoinstrucción");
+            setSubtype();
+        }
+        // si la cadena no es una constante asigna al tipo como "Elemento inválido"
+        else {
+            setType("Elemento inválido");
+            setValid(false);
+        }
     }
 
     /**
