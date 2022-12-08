@@ -6,10 +6,10 @@
 package models;
 
 public class Element {
-    private String text;            // cadena con el texto del elemento
-    private boolean valid;          // TRUE si el elemento es válido, o FALSE en caso contrario
-    private String type;            // tipo de elemento
-    private String subtype;         // subtipo del elemento
+    private final String text;          // cadena con el texto del elemento
+    private final boolean valid;        // TRUE si el elemento es válido, o FALSE en caso contrario
+    private String type;                // tipo de elemento
+    private String subtype;             // subtipo del elemento
 
     /**
      * Constructor: crea elemento. Asigna el texto y valor de validez (TRUE o FALSE).
