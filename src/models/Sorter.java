@@ -55,7 +55,9 @@ public class Sorter {
      * @return TRUE si el elemento es una constante carácter.
      */
     public boolean isChar(String text){
-        return (text.startsWith("\"") && text.endsWith("\"")) || (text.startsWith("'") && text.endsWith("'"));
+        if ( text.length()<32768 )
+            return (text.startsWith("\"") && text.endsWith("\"")) || (text.startsWith("'") && text.endsWith("'"));
+        else return false;
     }
 
     /**
