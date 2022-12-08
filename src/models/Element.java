@@ -7,7 +7,7 @@ package models;
 
 public class Element {
     private final String text;          // cadena con el texto del elemento
-    private final boolean valid;        // TRUE si el elemento es válido, o FALSE en caso contrario
+    private boolean valid;              // TRUE si el elemento es válido, o FALSE en caso contrario
     private String type;                // tipo de elemento
     private String subtype;             // subtipo del elemento
 
@@ -35,6 +35,14 @@ public class Element {
      */
     public void setSubtype(String subtype) {
         this.subtype = subtype;
+    }
+
+    /**
+     * Asigna estado de validez al elemento.
+     * @param bool boolean: validez del elemento.
+     */
+    public void setValid(boolean bool){
+        this.valid = bool;
     }
 
     /**
